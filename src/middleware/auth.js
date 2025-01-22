@@ -9,7 +9,7 @@ async function authTokenCheck(req, res,next){
             return res.status(401).send("Please Login.");
         }
         
-        var decoded = jwt.verify(authToken, 'Secret');
+        var decoded = jwt.verify(authToken, process.env.SECRET_KEY);
         
         var user = await User.findOne({_id: decoded._id});
         req.user=user;
